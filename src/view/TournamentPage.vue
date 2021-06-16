@@ -3,105 +3,9 @@
     <div>
       <p>Параметры турнира</p>
       <input placeholder="количество участников" type="number" v-model="tournament.participantsCount">
-      <button @click="addTournament() ">OK</button>
+      <button type="button" @click="addTournament()">OK</button>
     </div>
     <div>
-      <section id="bracket">
-        <div class="container">
-          <div class="split split-one">
-            <div class="round round-one current">
-              <div class="round-details">Round 1<br/><span class="date">&nbsp;</span></div>
-              <ul class="matchup">
-                <li class="team team-top">Alo<span class="score"></span></li>
-                <li class="team team-bottom">Virginia<span class="score">82</span></li>
-              </ul>
-              <ul class="matchup">
-                <li class="team team-top">Wake Forest<span class="score">64</span></li>
-                <li class="team team-bottom">Clemson<span class="score">56</span></li>
-              </ul>
-              <ul class="matchup">
-                <li class="team team-top">North Carolina<span class="score">68</span></li>
-                <li class="team team-bottom">Florida State<span class="score">54</span></li>
-              </ul>
-              <ul class="matchup">
-                <li class="team team-top">NC State<span class="score">74</span></li>
-                <li class="team team-bottom">Maryland<span class="score">92</span></li>
-              </ul>
-              <ul class="matchup">
-                <li class="team team-top">Georgia Tech<span class="score">78</span></li>
-                <li class="team team-bottom">Georgia<span class="score">80</span></li>
-              </ul>
-              <ul class="matchup">
-                <li class="team team-top">Auburn<span class="score">64</span></li>
-                <li class="team team-bottom">Florida<span class="score">63</span></li>
-              </ul>
-              <ul class="matchup">
-                <li class="team team-top">Kentucky<span class="score">70</span></li>
-                <li class="team team-bottom">Alabama<span class="score">59</span></li>
-              </ul>
-              <ul class="matchup">
-                <li class="team team-top">Vanderbilt<span class="score">64</span></li>
-                <li class="team team-bottom">Gonzaga<span class="score">68</span></li>
-              </ul>
-            </div>  <!-- END ROUND ONE -->
-
-            <div class="round round-two">
-              <div class="round-details">Round 2<br/><span class="date">&nbsp;</span></div>
-              <ul class="matchup">
-                <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-              </ul>
-              <ul class="matchup">
-                <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-              </ul>
-              <ul class="matchup">
-                <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-              </ul>
-              <ul class="matchup">
-                <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-              </ul>
-            </div>  <!-- END ROUND TWO -->
-
-            <div class="round round-three">
-              <div class="round-details">Round 3<br/><span class="date">&nbsp;</span></div>
-              <ul class="matchup">
-                <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-              </ul>
-              <ul class="matchup">
-                <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-                <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-              </ul>
-            </div>  <!-- END ROUND THREE -->
-          </div>
-
-          <div class="champion">
-            <div class="semis-l">
-              <div class="round-details">&nbsp;<br/><span class="date">&nbsp;</span></div>
-              <ul class="matchup championship">
-                <li class="alo"><span class="vote-count">ыапып;</span></li>
-              </ul>
-            </div>
-            <div class="final">
-              <i class="fa fa-trophy"></i>
-              <div class="round-details">Победитель<br/><span class="date">&nbsp;</span></div>
-              <ul class="matchup championship">
-                <li class="team team-top">&nbsp;<span class="vote-count">&nbsp;</span></li>
-
-              </ul>
-            </div>
-            <div class="semis-r">
-              <div class="round-details"><br/><span class="date">&nbsp;</span></div>
-              <ul class="matchup championship">
-                <li class="team team-top">&nbsp;<span class="vote-count">&nbsp;</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </div>
   </div>
@@ -139,7 +43,7 @@ export default {
       tournament: {
         name: 'New Tournament',
         participantsCount: null,
-
+        participants:'',
         start: new Date(),
         end: new Date() + 1,
         minParticipantsNumber: '',
@@ -163,7 +67,6 @@ export default {
     tour() {
       return this.$store.getters.tournament
     }
-
   }
 
 }
