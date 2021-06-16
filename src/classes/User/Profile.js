@@ -18,4 +18,6 @@ class Profile {
             this[key] = Object.hasOwnProperty.call(options, key) ? options[key] : null
         }
     }
-} export {Profile}
+}
+
+export {Profile}

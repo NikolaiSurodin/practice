@@ -12,8 +12,6 @@ class TournamentRoundMatch {
     round
     type // выбывание ли нет
 
-
-
     constructor(options = {}) {
         for (let key of Object.keys(options)) {
             let tempData = null

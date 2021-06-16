@@ -1,20 +1,18 @@
 class TournamentRound {
     id
     name
-    group
-    type
+    group // какая группа играет этот раунд
+    type // навылет раудн или нет
     start
     end
-    create_at
-    update_at
-    delete_at
-
 
     constructor(options = {}) {
-        for (let key of Object.keys(this)){
+        for (let key of Object.keys(this)) {
             this[key] = Object.hasOwnProperty.call(options, key) ? options[key] : null
         }
     }
+
     //Нужно получать список матчей в турнире
 }
+
 export {TournamentRound}
