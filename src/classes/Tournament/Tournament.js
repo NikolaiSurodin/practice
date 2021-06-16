@@ -1,4 +1,3 @@
-import {Team} from "../Team/Team";
 
 class Tournament {
     id
@@ -13,19 +12,9 @@ class Tournament {
     loser
 
     constructor(options = {}) {
-        for (let key of Object.keys(options)) {
-            let tempData = null
-            this.id = `f${(+new Date).toString(16)}`
-            if (Object.hasOwnProperty.call(options, key)) {
-                switch (key) {
-                    case 'participants':
-                        tempData = new Team(options[key])
-                        break
-                    default:
-                        tempData = options[key]
-                }
-            }
-            this[key] = tempData
+        this.id = `${(+new Date).toString(15)}`
+        for (let key of Object.keys(this)) {
+            this[key] = Object.hasOwnProperty.call(options, key) ? options[key] : null
         }
     }
 }

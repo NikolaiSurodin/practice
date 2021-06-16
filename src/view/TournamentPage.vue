@@ -17,35 +17,13 @@ export default {
   name: "TournamentPage",
   data() {
     return {
-      participants: [
-        {
-          name: 'team',
-          score:78
-        },
-        {
-          name: 'team',
-          score:78
-        },
-        {
-          name: 'team',
-          score:78
-        },
-        {
-          name: 'team',
-          score:78
-        },
-        {
-          name: 'team',
-          score:78
-        },
-
-      ],
+      participants: [],
       tournament: {
         name: 'New Tournament',
         participantsCount: null,
-        participants:'',
+        participants:[],
         start: new Date(),
-        end: new Date() + 1,
+        end: new Date(),
         minParticipantsNumber: '',
         prize: '',
         winner: '',
@@ -55,8 +33,9 @@ export default {
   },
   methods: {
     addTournament() {
-      if (this.tournament.participantsCount >= this.tournament.minParticipantsNumber) {
-        this.$store.dispatch('setTournament', this.tournament)
+      if (this.tournament.participantsCount >= this.tournament.minParticipantsNumber && this.tournament.participantsCount % 2 === 0) {
+         this.$store.dispatch('setTournament', this.tournament)
+
         this.tournament.participantsCount = ''
       } else {
         console.log('err')
