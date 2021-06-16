@@ -1,18 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import {TournamentRoundMatch} from "./classes/Tournament/TournamentRoundMatch";
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      tournamentMatch: {},
+      user:{}
+    }
+  },
+  methods: {
+    add() {
+      let round ={
+        id:456,
+        name:'round',
+        group:'firs',
+        type:'olip',
+        start:new Date(),
+        end:new Date(),
+      }
+      let tourMa = {
+        create_at:'',
+        update_at:'',
+        delete_at:'',
+        id:123,
+        name:'alo',
+        start:new Date(),
+        end:new Date() - 1,
+        round:round,
+        type:''
+      }
+      this.tournamentMatch = new TournamentRoundMatch(tourMa)
+      console.log(this.tournamentMatch)
+    }
+  },
+  mounted() {
+    this.add()
+
   }
+
 }
 </script>
 
