@@ -1,10 +1,10 @@
-import stare from './moduleTournamentState'
+import state from './moduleTournamentState'
 import actions from './moduleTournamentActions'
 import mutations from './moduleTournamentMutations'
 import getters from './moduleTournamentGetters'
 
 export default {
-    stare,
+    state,
     actions,
     mutations,
     getters

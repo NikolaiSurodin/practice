@@ -1,3 +1,3 @@
 export default {
-    tournament: state =>  state.tournament
+    getTournament: state => state.tournament
 }
