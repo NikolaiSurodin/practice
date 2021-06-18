@@ -1,6 +1,6 @@
 export default {
-    tournament: JSON.parse(localStorage.getItem('tournament')) || {},
-    matchList: [],
+    tournament: {},
+    matchList: null,
     roundList: null,
     participantsList:[],
     participantsCount: null

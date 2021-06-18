@@ -2,28 +2,26 @@
   <div class="form">
     <div>
       <p>Параметры турнира</p>
-      <input placeholder="количество участников"  type="number" v-model="tournament.participantsCount">
+      <input placeholder="количество участников" type="number" v-model="tournament.participantsCount">
       <button type="button" @click="createTournament(tournament)">OK</button>
     </div>
-    <tournament-table
-        :count="tournament.participantsCount"
-    />
   </div>
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
-import TournamentTable from "../components/TournamentTable";
+import {mapActions} from 'vuex'
+import {Tournament} from "../classes/Tournament/Tournament";
+
 
 export default {
   name: "TournamentPage",
-  components: {TournamentTable},
+
   data() {
     return {
-      participants: [],
-      tournament: {
+      count: null,
+      tournament: new Tournament({
         name: 'New Tournament',
-        participantsCount:null,
+        participantsCount: this.participantsCount,
         participants: [],
         start: new Date(),
         end: new Date(),
@@ -31,19 +29,20 @@ export default {
         prize: '',
         winner: '',
         loser: '',
-      }
+      })
     }
   },
   methods: {
     ...mapActions([
       "createTournament"
-    ])
+    ]),
   },
-  computed: {
-    ...mapGetters([
-      'getTournament'
-    ])
-  }
+  // computed: {
+  //   ...mapGetters([
+  //     'getTournament'
+  //   ])
+  // },
+
 
 }
 </script>
