@@ -6,16 +6,18 @@ class Tournament {
     participantsCount
     roundCount
     round
-    participants
+    participantList
+    roundList
     start
     end
-    minParticipantsNumber = 2// минимум для турнира
+    minParticipantsNumber// минимум для турнира
     prize
     winner
     loser
 
     constructor(options = {}) {
         this.id = `f${(+new Date).toString(15)}`
+        this.minParticipantsNumber = 2
         for (let key of Object.keys(options)) {
             this.participantsCount = Number(this.participantsCount)
             let tempData = null

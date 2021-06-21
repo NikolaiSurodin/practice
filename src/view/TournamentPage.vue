@@ -2,14 +2,19 @@
   <div class="form">
     <div>
       <p>Параметры турнира</p>
-      <input placeholder="количество участников" type="number" v-model="tournament.participantsCount">
-      <button type="button" @click="createTournament(tournament)">OK</button>
+      <div class="input-group">
+        <input placeholder="количество участников" type="number" v-model="tournament.participantsCount">
+        <input placeholder="Название" type="text" v-model="tournament.name">
+      </div>
+      <button class="addButton" type="button" :disabled="!tournament.participantsCount" @click="addTournament()">
+        Создать
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 import {Tournament} from "../classes/Tournament/Tournament";
 
 
@@ -20,9 +25,10 @@ export default {
     return {
       count: null,
       tournament: new Tournament({
-        name: 'New Tournament',
+        name: '',
         participantsCount: this.participantsCount,
-        participants: [],
+        roundList: [],
+        participantsList: [],
         start: new Date(),
         end: new Date(),
         minParticipantsNumber: '',
@@ -34,20 +40,32 @@ export default {
   },
   methods: {
     ...mapActions([
-      "createTournament"
+      'createTournament'
     ]),
+    addTournament() {
+      this.createTournament(this.tournament)
+          .then(() => {
+          })
+          .catch((err) => console.log(err))
+    }
+
   },
-  // computed: {
-  //   ...mapGetters([
-  //     'getTournament'
-  //   ])
-  // },
+  computed: {
+    ...mapGetters([
+      'getTournament',
+      'getRoundList'
+    ])
+  },
 
 
 }
 </script>
-
 <style scoped>
+.addButton {
+  cursor: pointer;
+  margin-top: 15px;
+}
+
 .form {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

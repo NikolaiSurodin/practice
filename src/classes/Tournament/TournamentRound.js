@@ -11,7 +11,6 @@ class TournamentRound {
             this[key] = Object.hasOwnProperty.call(options, key) ? options[key] : null
         }
 
-
     }
 
     //Нужно получать список матчей в турнире

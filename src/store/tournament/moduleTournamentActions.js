@@ -1,22 +1,41 @@
 import {Tournament} from "../../classes/Tournament/Tournament";
+import {TournamentRound} from "../../classes/Tournament/TournamentRound";
 
 export default {
-    createTournament({commit}, data) {
+    createTournament({commit, dispatch}, data) {
         return new Promise((resolve, reject) => {
             let tournament = new Tournament(data)
             if (tournament.participantsCount === Math.pow(2, Math.floor(Math.log(tournament.participantsCount) / Math.log(2)))) {
                 commit('SET_TOURNAMENT', tournament)
                 commit('SET_PARTICIPANT_COUNT', tournament.participantsCount)
-
-
+                dispatch('createRoundCount')
+                dispatch('createRoundList')
+                dispatch('createMatchList')
                 resolve(tournament)
             } else {
-                reject((error) => console.log(error))
+                reject((err) => err)
             }
         })
     },
+    // число раундов
+    createRoundCount({commit, state}) {
+        let roundCount = Math.log(state.participantsCount) / Math.log(2)
+        commit('SET_ROUND_COUNT', roundCount)
+    },
+    // список раундов
+    createRoundList({commit, getters}) {
+        let tournamentRoundList = []
+        for (let i = 0; i < getters.getTournament.roundCount; i++) {
+            tournamentRoundList.push(new TournamentRound())
+        }
+        commit('SET_ROUND_LIST', tournamentRoundList)
+    },
 
-
-
+    //список матчей
+    // кол-во матчей для раунда = кол-во участников / ( 2 * номер раунда)
+    createMatchList({commit, getters}) {
+        let participantCount = getters.getTournament.participantsCount
+        commit('SET_MATCH_LIST', matchList)
+    }
 
 }

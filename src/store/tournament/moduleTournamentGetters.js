@@ -1,3 +1,4 @@
 export default {
-    getTournament: state => state.tournament
+    getTournament: state => state.tournament,
+    getRoundList:state => state.roundList
 }

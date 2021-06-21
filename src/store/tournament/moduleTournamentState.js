@@ -1,7 +1,7 @@
 export default {
     tournament: {},
-    matchList: null,
-    roundList: null,
-    participantsList:[],
+    matchList: [],
+    roundList: [],
+    participantList:[],
     participantsCount: null
 }
