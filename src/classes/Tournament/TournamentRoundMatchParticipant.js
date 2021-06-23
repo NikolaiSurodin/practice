@@ -6,7 +6,6 @@ class TournamentRoundMatchParticipant {
     name
     team // может быть как команда, так и одиночный игрок
 
-
     constructor(options = {}) {
         for (let key of Object.keys(options)) {
             let tempData = null

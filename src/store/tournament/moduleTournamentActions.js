@@ -1,5 +1,11 @@
 import {Tournament} from "../../classes/Tournament/Tournament";
 import {TournamentRound} from "../../classes/Tournament/TournamentRound";
+import {TournamentRoundMatch} from "../../classes/Tournament/TournamentRoundMatch";
+import {TournamentRoundMatchParticipant} from "../../classes/Tournament/TournamentRoundMatchParticipant";
+
+// import {TournamentRoundMatch} from "../../classes/Tournament/TournamentRoundMatch";
+// import {TournamentRoundMatchParticipant} from "../../classes/Tournament/TournamentRoundMatchParticipant";
+
 
 export default {
     createTournament({commit, dispatch}, data) {
@@ -31,11 +37,15 @@ export default {
         commit('SET_ROUND_LIST', tournamentRoundList)
     },
 
-    //список матчей
+    //список матчей для рауднда
     // кол-во матчей для раунда = кол-во участников / ( 2 * номер раунда)
-    createMatchList({commit, getters}) {
-        let participantCount = getters.getTournament.participantsCount
+    createMatchList({commit, state}) {
+        let matchList = state.roundList
+        matchList.forEach((tournamentRound) => {
+            for (let i = 0; i < state.participantsCount; i++) {
+                tournamentRound.matchList.push(new TournamentRoundMatch(new TournamentRoundMatchParticipant({name: 'player1'}), new TournamentRoundMatchParticipant({name: 'player2'})))}
+        })
+        console.log(matchList)
         commit('SET_MATCH_LIST', matchList)
     }
-
 }
