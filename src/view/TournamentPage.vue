@@ -10,17 +10,22 @@
         Создать
       </button>
     </div>
+    <div v-if="getParticipantCount">
+      <template>
+        <tournament-table/>
+      </template>
+    </div>
   </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
 import {Tournament} from "../classes/Tournament/Tournament";
-import TournamentTable from "./TournamentTable";
-
+import TournamentTable from "@/view/TournamentTable";
 
 export default {
   name: "TournamentPage",
+  components: {TournamentTable},
   data() {
     return {
       count: null,
@@ -45,6 +50,7 @@ export default {
     addTournament() {
       this.createTournament(this.tournament)
           .then(() => {
+            this.tournament.participantsCount = ''
           })
           .catch((err) => console.log(err))
     }
@@ -53,12 +59,27 @@ export default {
   computed: {
     ...mapGetters([
       'getTournament',
-      'getRoundList'
+      'getRoundList',
+      'getMatchList',
+      'getParticipantCount'
     ])
   }
 
 }
 </script>
 <style scoped>
+.form {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+.addButton {
+  cursor: pointer;
+  margin-top: 15px;
+}
 
 </style>

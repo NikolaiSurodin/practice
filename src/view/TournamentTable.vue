@@ -1,125 +1,109 @@
 <template>
-<div>
-  <section id="bracket">
-    <div class="container">
-      <div class="split split-one">
-        <div class="round round-one current">
-          <div class="round-details">Round 1<br/><span class="date">&nbsp;</span></div>
-          <ul class="matchup">
-            <li class="team team-top">{{}}<span class="score">12</span></li>
-            <li class="team team-bottom">Virginia<span class="score">82</span></li>
-          </ul>
-          <ul class="matchup">
-            <li class="team team-top">Wake Forest<span class="score">64</span></li>
-            <li class="team team-bottom">Clemson<span class="score">56</span></li>
-          </ul>
-          <ul class="matchup">
-            <li class="team team-top">North Carolina<span class="score">68</span></li>
-            <li class="team team-bottom">Florida State<span class="score">54</span></li>
-          </ul>
-          <ul class="matchup">
-            <li class="team team-top">NC State<span class="score">74</span></li>
-            <li class="team team-bottom">Maryland<span class="score">92</span></li>
-          </ul>
-          <ul class="matchup">
-            <li class="team team-top">Georgia Tech<span class="score">78</span></li>
-            <li class="team team-bottom">Georgia<span class="score">80</span></li>
-          </ul>
-          <ul class="matchup">
-            <li class="team team-top">Auburn<span class="score">64</span></li>
-            <li class="team team-bottom">Florida<span class="score">63</span></li>
-          </ul>
-          <ul class="matchup">
-            <li class="team team-top">Kentucky<span class="score">70</span></li>
-            <li class="team team-bottom">Alabama<span class="score">59</span></li>
-          </ul>
-          <ul class="matchup">
-            <li class="team team-top">Vanderbilt<span class="score">64</span></li>
-            <li class="team team-bottom">Gonzaga<span class="score">68</span></li>
-          </ul>
-        </div>  <!-- END ROUND ONE -->
+  <div>
+    <section id="bracket">
+      <div class="container">
+        <div class="split split-one">
+          <div class="round round-one current" v-for="(round, id) in getRoundList" :key="id">
+            <div class="round round-one current">Round {{ round.numberRound }}
+              <br/><span class="date">start: __ </span>
+              <br/><span class="date">end: __ </span>
 
-        <div class="round round-two">
-          <div class="round-details">Round 2<br/><span class="date">&nbsp;</span></div>
-          <ul class="matchup">
-            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-          </ul>
-          <ul class="matchup">
-            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-          </ul>
-          <ul class="matchup">
-            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-          </ul>
-          <ul class="matchup">
-            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-          </ul>
-        </div>  <!-- END ROUND TWO -->
+              <div class="matchup">
+                <ul class="matchup">
+                  <li class="team team-top">
+                    <span class="score">
+                      12
+                  </span>
+                  </li>
+                  <li class="team team-top">второй из массива
+                    <span class="score">
+                      13
+                  </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>  <!-- END ROUND ONE -->
 
-        <div class="round round-three">
-          <div class="round-details">Round 3<br/><span class="date">&nbsp;</span></div>
-          <ul class="matchup">
-            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-          </ul>
-          <ul class="matchup">
-            <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-            <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-          </ul>
-        </div>  <!-- END ROUND THREE -->
+          <!--          <div class="round round-two">-->
+          <!--            <div class="round-details">Round 2<br/><span class="date">&nbsp;</span></div>-->
+          <!--            <ul class="matchup">-->
+          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--            </ul>-->
+          <!--            <ul class="matchup">-->
+          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--            </ul>-->
+          <!--            <ul class="matchup">-->
+          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--            </ul>-->
+          <!--            <ul class="matchup">-->
+          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--            </ul>-->
+          <!--          </div>  &lt;!&ndash; END ROUND TWO &ndash;&gt;-->
+
+          <!--          <div class="round round-three">-->
+          <!--            <div class="round-details">Round 3<br/><span class="date">&nbsp;</span></div>-->
+          <!--            <ul class="matchup">-->
+          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--            </ul>-->
+          <!--            <ul class="matchup">-->
+          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
+          <!--            </ul>-->
+          <!--          </div>  &lt;!&ndash; END ROUND THREE &ndash;&gt;-->
+        </div>
+
+        <!--        <div class="champion">-->
+        <!--          <div class="semis-l">-->
+        <!--            <div class="round-details">&nbsp;<br/><span class="date">&nbsp;</span></div>-->
+        <!--            <ul class="matchup championship">-->
+        <!--              <li class="alo"><span class="vote-count">ыапып;</span></li>-->
+        <!--            </ul>-->
+        <!--          </div>-->
+        <!--          <div class="final">-->
+        <!--            <i class="fa fa-trophy"></i>-->
+        <!--            <div class="round-details">Победитель<br/><span class="date">&nbsp;</span></div>-->
+        <!--            <ul class="matchup championship">-->
+        <!--              <li class="team team-top">&nbsp;<span class="vote-count">&nbsp;</span></li>-->
+        <!--            </ul>-->
+        <!--          </div>-->
+        <!--          <div class="semis-r">-->
+        <!--            <div class="round-details"><br/><span class="date">&nbsp;</span></div>-->
+        <!--            <ul class="matchup championship">-->
+        <!--              <li class="team team-top">&nbsp;<span class="vote-count">&nbsp;</span></li>-->
+        <!--            </ul>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
-
-      <div class="champion">
-        <div class="semis-l">
-          <div class="round-details">&nbsp;<br/><span class="date">&nbsp;</span></div>
-          <ul class="matchup championship">
-            <li class="alo"><span class="vote-count">ыапып;</span></li>
-          </ul>
-        </div>
-        <div class="final">
-          <i class="fa fa-trophy"></i>
-          <div class="round-details">Победитель<br/><span class="date">&nbsp;</span></div>
-          <ul class="matchup championship">
-            <li class="team team-top">&nbsp;<span class="vote-count">&nbsp;</span></li>
-
-          </ul>
-        </div>
-        <div class="semis-r">
-          <div class="round-details"><br/><span class="date">&nbsp;</span></div>
-          <ul class="matchup championship">
-            <li class="team team-top">&nbsp;<span class="vote-count">&nbsp;</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
+    </section>
+  </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
-name: "TournamentTable"
+  name: "TournamentTable",
+  data() {
+    return {}
+  },
+  computed: {
+    ...mapGetters([
+      'getTournament',
+      'getRoundList',
+      'getMatchList',
+      'getParticipantCount'
+    ]),
+  }
 }
 </script>
 
 <style scoped>
-.addButton {
-  cursor: pointer;
-  margin-top: 15px;
-}
-
-.form {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
 body {
   font-family: 'Istok Web', sans-serif;
   background: url("http://picjumbo.com/wp-content/uploads/HNCK2189-1300x866.jpg") no-repeat #000;

@@ -24,25 +24,39 @@ export default {
         let roundCount = Math.log(state.participantsCount) / Math.log(2)
         commit('SET_ROUND_COUNT', roundCount)
     },
+
     // список раундов
     createRoundList({commit, getters}) {
         let tournamentRoundList = []
+
         for (let i = 0; i < getters.getTournament.roundCount; i++) {
-            tournamentRoundList.push(new TournamentRound())
+            tournamentRoundList.push(new TournamentRound(i + 1))
         }
         commit('SET_ROUND_LIST', tournamentRoundList)
     },
 
     //список матчей для рауднда
-    // кол-во матчей для раунда = кол-во участников / ( 2 * номер раунда)
-    createMatchList({commit, state}) {
-        let matchList = state.roundList
-        matchList.forEach((tournamentRound) => {
-            for (let i = 0; i < state.participantsCount; i++) {
-                tournamentRound.matchList.push(new TournamentRoundMatch(new TournamentRoundMatchParticipant({name: 'player1'}), new TournamentRoundMatchParticipant({name: 'player2'})))
+    createMatchList({commit, getters}) {
+        let matchList = []
+        let participant1 = new TournamentRoundMatchParticipant({
+            id: `e${(+new Date).toString(15)}`,
+            name: '',
+            team: {}
+        })
+        let participant2 = new TournamentRoundMatchParticipant({
+            id: `f${(+new Date).toString(15)}`,
+            name: '',
+            team: {}
+        })
+
+        getters.getRoundList.forEach((round) => {
+            let roundNumber = round.numberRound
+            for (let i = 0; i < getters.getParticipantCount / Math.pow(2, roundNumber); i++) {
+                let numberMatch = i + 1
+                let currentMatch = new TournamentRoundMatch(roundNumber, numberMatch, roundNumber, participant1, participant2)
+                matchList.push(currentMatch)
             }
         })
-        console.log(matchList)
         commit('SET_MATCH_LIST', matchList)
     }
 }
