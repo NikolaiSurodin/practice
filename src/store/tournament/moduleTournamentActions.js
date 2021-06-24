@@ -53,7 +53,7 @@ export default {
             let roundNumber = round.numberRound
             for (let i = 0; i < getters.getParticipantCount / Math.pow(2, roundNumber); i++) {
                 let numberMatch = i + 1
-                let currentMatch = new TournamentRoundMatch(roundNumber, numberMatch, roundNumber, participant1, participant2)
+                let currentMatch = new TournamentRoundMatch(roundNumber, numberMatch, participant1, participant2)
                 matchList.push(currentMatch)
             }
         })
