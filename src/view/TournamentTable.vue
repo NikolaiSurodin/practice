@@ -1,94 +1,16 @@
 <template>
   <div>
-    <section id="bracket">
-      <div class="container">
-        <div class="split split-one">
-          <div class="round round-one current" v-for="(round, id) in getRoundList" :key="id">
-            <div class="round round-one current">Round {{ round.numberRound }}
-              <br/><span class="date">start: __ </span>
-              <br/><span class="date">end: __ </span>
-
-              <div class="matchup">
-                <ul class="matchup">
-                  <li class="team team-top">
-                    <span class="score">
-                      12
-                  </span>
-                  </li>
-                  <li class="team team-top">второй из массива
-                    <span class="score">
-                      13
-                  </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>  <!-- END ROUND ONE -->
-
-          <!--          <div class="round round-two">-->
-          <!--            <div class="round-details">Round 2<br/><span class="date">&nbsp;</span></div>-->
-          <!--            <ul class="matchup">-->
-          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--            </ul>-->
-          <!--            <ul class="matchup">-->
-          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--            </ul>-->
-          <!--            <ul class="matchup">-->
-          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--            </ul>-->
-          <!--            <ul class="matchup">-->
-          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--            </ul>-->
-          <!--          </div>  &lt;!&ndash; END ROUND TWO &ndash;&gt;-->
-
-          <!--          <div class="round round-three">-->
-          <!--            <div class="round-details">Round 3<br/><span class="date">&nbsp;</span></div>-->
-          <!--            <ul class="matchup">-->
-          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--            </ul>-->
-          <!--            <ul class="matchup">-->
-          <!--              <li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--              <li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>-->
-          <!--            </ul>-->
-          <!--          </div>  &lt;!&ndash; END ROUND THREE &ndash;&gt;-->
-        </div>
-
-        <!--        <div class="champion">-->
-        <!--          <div class="semis-l">-->
-        <!--            <div class="round-details">&nbsp;<br/><span class="date">&nbsp;</span></div>-->
-        <!--            <ul class="matchup championship">-->
-        <!--              <li class="alo"><span class="vote-count">ыапып;</span></li>-->
-        <!--            </ul>-->
-        <!--          </div>-->
-        <!--          <div class="final">-->
-        <!--            <i class="fa fa-trophy"></i>-->
-        <!--            <div class="round-details">Победитель<br/><span class="date">&nbsp;</span></div>-->
-        <!--            <ul class="matchup championship">-->
-        <!--              <li class="team team-top">&nbsp;<span class="vote-count">&nbsp;</span></li>-->
-        <!--            </ul>-->
-        <!--          </div>-->
-        <!--          <div class="semis-r">-->
-        <!--            <div class="round-details"><br/><span class="date">&nbsp;</span></div>-->
-        <!--            <ul class="matchup championship">-->
-        <!--              <li class="team team-top">&nbsp;<span class="vote-count">&nbsp;</span></li>-->
-        <!--            </ul>-->
-        <!--          </div>-->
-        <!--        </div>-->
-      </div>
-    </section>
+    <tournament />
   </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
+import Tournament from "@/components/Tournament";
 
 export default {
   name: "TournamentTable",
+  components: {Tournament},
   data() {
     return {}
   },

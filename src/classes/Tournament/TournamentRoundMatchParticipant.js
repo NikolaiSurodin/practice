@@ -6,14 +6,10 @@ class TournamentRoundMatchParticipant {
     team // может быть как команда, так и одиночный игрок
 
     constructor(options = {}) {
-        let name = '';
-        let possible = 'abcdefghijklmnopqrstuvwxyz';
-        for (let i = 0; i < 5; i++) {
-            name += possible.charAt(Math.floor(Math.random() * possible.length))
-        }
+
         for (let key of Object.keys(options)) {
             let tempData = null
-            this.name = name
+            this.name = 'Player'
             if (Object.hasOwnProperty.call(options, key)) {
                 switch (key) {
                     case 'team':

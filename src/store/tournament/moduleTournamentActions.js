@@ -1,7 +1,7 @@
-import {Tournament} from "../../classes/Tournament/Tournament";
-import {TournamentRound} from "../../classes/Tournament/TournamentRound";
-import {TournamentRoundMatch} from "../../classes/Tournament/TournamentRoundMatch";
-import {TournamentRoundMatchParticipant} from "../../classes/Tournament/TournamentRoundMatchParticipant";
+import {Tournament} from "@/classes/Tournament/Tournament";
+import {TournamentRound} from "@/classes/Tournament/TournamentRound";
+import {TournamentRoundMatch} from "@/classes/Tournament/TournamentRoundMatch";
+import {TournamentRoundMatchParticipant} from "@/classes/Tournament/TournamentRoundMatchParticipant";
 
 export default {
     createTournament({commit, dispatch}, data) {
@@ -53,7 +53,7 @@ export default {
             let roundNumber = round.numberRound
             for (let i = 0; i < getters.getParticipantCount / Math.pow(2, roundNumber); i++) {
                 let numberMatch = i + 1
-                let currentMatch = new TournamentRoundMatch(roundNumber, numberMatch, participant1, participant2)
+                let currentMatch = new TournamentRoundMatch(roundNumber, numberMatch, roundNumber, participant1, participant2)
                 matchList.push(currentMatch)
             }
         })

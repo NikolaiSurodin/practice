@@ -1,14 +1,14 @@
 <template>
   <div class="form">
-    <div>
-      <p>Параметры турнира</p>
-      <div class="input-group">
-        <input placeholder="количество участников" type="number" v-model="tournament.participantsCount">
-        <input placeholder="Название" type="text" v-model="tournament.name">
+    <div class="container">
+      <p class="text-center">Параметры турнира</p>
+      <div class="input-group-sm">
+        <b-form-input  placeholder="количество участников" type="number" v-model="tournament.participantsCount" />
+        <b-form-input placeholder="Название" type="text" v-model="tournament.name" />
       </div>
-      <button class="addButton" type="button" :disabled="!tournament.participantsCount" @click="addTournament()">
+      <b-button variant="success" class="mt-3" type="button" :disabled="!tournament.participantsCount" @click="addTournament()">
         Создать
-      </button>
+      </b-button>
     </div>
     <div v-if="getParticipantCount">
       <template>
@@ -20,7 +20,7 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
-import {Tournament} from "../classes/Tournament/Tournament";
+import {Tournament} from "@/classes/Tournament/Tournament";
 import TournamentTable from "@/view/TournamentTable";
 
 export default {
@@ -52,7 +52,10 @@ export default {
           .then(() => {
             this.tournament.participantsCount = ''
           })
-          .catch((err) => console.log(err))
+          .catch(() =>{
+            alert('Неверное число участников!')
+            this.tournament.participantsCount = ''
+          })
     }
 
   },
@@ -72,14 +75,12 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 
-.addButton {
-  cursor: pointer;
-  margin-top: 15px;
+  color: #2c3e50;
+  margin-top: 30px;
+}
+.container{
+  max-width: 250px;
 }
 
 </style>
