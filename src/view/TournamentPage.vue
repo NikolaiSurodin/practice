@@ -3,10 +3,20 @@
     <div class="container">
       <p class="text-center">Параметры турнира</p>
       <div class="input-group-sm">
-        <b-form-input  placeholder="количество участников" type="number" v-model="tournament.participantsCount" />
-        <b-form-input placeholder="Название" type="text" v-model="tournament.name" />
+        <b-form-input
+            placeholder="количество участников"
+            type="number"
+            autofocus
+            required
+            @keydown.enter="addTournament"
+            v-model="tournament.participantsCount"/>
       </div>
-      <b-button variant="success" class="mt-3" type="button" :disabled="!tournament.participantsCount" @click="addTournament()">
+      <b-button
+          variant="success"
+          class="mt-3"
+          type="button"
+          :disabled="!valid"
+          @click="addTournament">
         Создать
       </b-button>
     </div>
@@ -51,8 +61,9 @@ export default {
       this.createTournament(this.tournament)
           .then(() => {
             this.tournament.participantsCount = ''
+            this.tournament.name = ''
           })
-          .catch(() =>{
+          .catch(() => {
             alert('Неверное число участников!')
             this.tournament.participantsCount = ''
           })
@@ -61,11 +72,11 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getTournament',
-      'getRoundList',
-      'getMatchList',
       'getParticipantCount'
-    ])
+    ]),
+    valid() {
+      return this.tournament.participantsCount
+    }
   }
 
 }
@@ -75,11 +86,11 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   color: #2c3e50;
   margin-top: 30px;
 }
-.container{
+
+.container {
   max-width: 250px;
 }
 

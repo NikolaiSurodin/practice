@@ -1,17 +1,16 @@
 class TournamentRoundMatch {
     id
     name
-    time
+    date
     numberRound
     numberMatch
     participantList
 
-    constructor(numberRound, numberMatch, time, ...participantList) {
+    constructor(date, numberRound, numberMatch, ...participantList) {
         this.participantList = [...participantList]
         this.numberRound = numberRound
         this.numberMatch = numberMatch
-        this.time = time
-
+        this.date = date
     }
 }
 

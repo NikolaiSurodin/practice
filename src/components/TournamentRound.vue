@@ -1,13 +1,11 @@
 <template>
-  <div class="container">
-    <div class="row" v-for="(round, id) in getRoundList" :key="id">
-      <p>Round № {{ round.numberRound }}</p>
-      <div class="row roundList" v-for="(match, id) in matchListByRound(round.numberRound)" :key="id">
-        <div class="row alo">
-          <tournament-match>
-            {{ match.participantList[0].name }} - {{ match.participantList[1].name }}
-          </tournament-match>
-        </div>
+  <div>
+    <div class="container">
+      <p class="row roundNumber">ROUND №{{ round.numberRound }}</p>
+      <div v-for="(match, id) in matchListByRoundNumber(round.numberRound)" :key="id">
+        <tournament-match
+            :match="match"
+        />
       </div>
     </div>
   </div>
@@ -23,31 +21,33 @@ export default {
   data() {
     return {}
   },
+  props: {
+    round: {
+      type: Object
+    }
+  },
   methods: {
-    matchListByRound(numberRound) {
+    matchListByRoundNumber(numberRound) {
       return this.getMatchList.filter(match => match.numberRound === numberRound)
     }
   },
   computed: {
     ...mapGetters([
-      'getTournament',
-      'getRoundList',
-      'getMatchList',
-      'getParticipantCount'
+      'getMatchList'
     ])
   }
-
 }
 </script>
 
 <style scoped>
-.alo{
-  display: flex;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,700&display=swap');
 
-  justify-items: flex-start;
+.roundNumber {
+  font-family: 'Noto Serif', serif;
+  justify-content: center;
+  border: solid #000000;
+  height: 50px;
+  border-radius: 10px;
 }
-.roundList{
 
-  display: flex;
-}
 </style>

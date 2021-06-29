@@ -4,6 +4,7 @@ class TournamentRoundMatchParticipant {
     id
     name
     team // может быть как команда, так и одиночный игрок
+    score
 
     constructor(options = {}) {
 

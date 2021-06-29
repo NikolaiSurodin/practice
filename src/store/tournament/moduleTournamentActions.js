@@ -34,26 +34,29 @@ export default {
         }
         commit('SET_ROUND_LIST', tournamentRoundList)
     },
-
     //список матчей для рауднда
     createMatchList({commit, getters}) {
         let matchList = []
         let participant1 = new TournamentRoundMatchParticipant({
             id: `e${(+new Date).toString(15)}`,
             name: '',
-            team: {}
+            team: {},
+            score: 0
         })
         let participant2 = new TournamentRoundMatchParticipant({
             id: `f${(+new Date).toString(15)}`,
             name: '',
-            team: {}
+            team: {},
+            score: 0
+
         })
 
         getters.getRoundList.forEach((round) => {
-            let roundNumber = round.numberRound
-            for (let i = 0; i < getters.getParticipantCount / Math.pow(2, roundNumber); i++) {
+            let numberRound = round.numberRound
+            for (let i = 0; i < getters.getParticipantCount / Math.pow(2, numberRound); i++) {
                 let numberMatch = i + 1
-                let currentMatch = new TournamentRoundMatch(roundNumber, numberMatch, roundNumber, participant1, participant2)
+                let date = new Date().toISOString().substring(0, 10)
+                let currentMatch = new TournamentRoundMatch(date, numberRound, numberMatch, participant1, participant2)
                 matchList.push(currentMatch)
             }
         })
