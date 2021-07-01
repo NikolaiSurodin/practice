@@ -1,5 +1,5 @@
 <template>
-  <div class="match"
+  <div class="matchC"
        :class="{finishedMatch:match.isFinished}"
   >
     <b-avatar variant="secondary"></b-avatar>
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped>
-.match {
+.matchC {
   background-color: #000032;
   border-radius: 5px;
   height: 7rem;
@@ -41,6 +41,7 @@ export default {
   margin-top: 15px;
   color: #f81d31;
   list-style-type: none;
+  cursor: pointer;
 }
 
 .match::before {

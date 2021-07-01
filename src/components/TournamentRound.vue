@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="container">
     <p class="roundNumber">ROUND №{{ round.numberRound }}</p>
 
-    <ul class="match" v-for="(match, id) in matchListByRoundNumber(round.numberRound)" :key="id">
-      <li>
+    <ul v-for="(match, id) in matchListByRoundNumber(round.numberRound)" :key="id">
+      <li class="match">
         <tournament-match
             :match="match"
         />
@@ -55,9 +55,15 @@ export default {
   border-radius: 10px;
 }
 
-.match {
+.match{
   list-style-type: none;
+  display: flex;
+  flex: 0 1 auto;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-end;
 }
+
 
 
 </style>

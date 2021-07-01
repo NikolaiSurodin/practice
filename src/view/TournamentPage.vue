@@ -25,6 +25,11 @@
         <tournament-table/>
       </template>
     </div>
+    <template>
+      <popup-error v-if="error"
+                   @closePopup="closePopup"
+      />
+    </template>
   </div>
 </template>
 
@@ -32,13 +37,15 @@
 import {mapActions, mapGetters} from 'vuex'
 import {Tournament} from "@/classes/Tournament/Tournament";
 import TournamentTable from "@/view/TournamentTable";
+import PopupError from "@/components/PopupError";
 
 export default {
   name: "TournamentPage",
-  components: {TournamentTable},
+  components: {PopupError, TournamentTable},
   data() {
     return {
       count: null,
+      error:false,
       tournament: new Tournament({
         name: '',
         participantsCount: this.participantsCount,
@@ -61,12 +68,13 @@ export default {
       this.createTournament(this.tournament)
           .then(() => {
             this.tournament.participantsCount = ''
-            this.tournament.name = ''
           })
           .catch(() => {
-            alert('Неверное число участников!')
-            this.tournament.participantsCount = ''
+            this.error = true
           })
+    },
+    closePopup() {
+      this.error = false
     }
   },
   computed: {
