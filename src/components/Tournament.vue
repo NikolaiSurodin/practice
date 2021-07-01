@@ -1,15 +1,16 @@
 <template>
   <div class="container">
     <div class="row"
-         v-for="(round, id) in getRoundList" :key="id">
-      <tournament-round :round="round"/>
+         v-for="(round, id) in roundList" :key="id">
+      <tournament-round :round="round"
+                        :match-list="matchList"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import TournamentRound from "@/components/TournamentRound";
-import {mapGetters} from "vuex"
 
 export default {
   name: "Tournament",
@@ -17,10 +18,17 @@ export default {
   data() {
     return {}
   },
-  computed: {
-    ...mapGetters([
-      'getRoundList'
-    ])
+  props: {
+    roundList: {
+      type: Array,
+      default: null,
+      required: true
+    },
+    matchList: {
+      type: Array,
+      default: null,
+      required: true
+    }
   }
 }
 </script>

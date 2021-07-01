@@ -39,13 +39,13 @@ export default {
         let matchList = []
         let participant1 = new TournamentRoundMatchParticipant({
             id: `e${(+new Date).toString(15)}`,
-            name: '',
+            name: 'Player 1',
             team: {},
             score: 0
         })
         let participant2 = new TournamentRoundMatchParticipant({
             id: `f${(+new Date).toString(15)}`,
-            name: '',
+            name: 'Player 2',
             team: {},
             score: 0
 
@@ -55,8 +55,10 @@ export default {
             let numberRound = round.numberRound
             for (let i = 0; i < getters.getParticipantCount / Math.pow(2, numberRound); i++) {
                 let numberMatch = i + 1
-                let date = new Date().toISOString().substring(0, 10)
-                let currentMatch = new TournamentRoundMatch(date, numberRound, numberMatch, participant1, participant2)
+                let currentYear = new Date().getFullYear()
+                let month = Math.floor(Math.random() * 11)
+                let date = Math.floor(Math.random() * 31)
+                let currentMatch = new TournamentRoundMatch(new Date(currentYear, month, date ).toISOString().substring(0,10), numberRound, numberMatch, participant1, participant2)
                 matchList.push(currentMatch)
             }
         })

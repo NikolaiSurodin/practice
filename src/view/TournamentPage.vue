@@ -68,7 +68,6 @@ export default {
             this.tournament.participantsCount = ''
           })
     }
-
   },
   computed: {
     ...mapGetters([
