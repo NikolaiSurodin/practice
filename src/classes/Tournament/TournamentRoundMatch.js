@@ -5,14 +5,16 @@ class TournamentRoundMatch {
     numberRound
     numberMatch
     participantList
-    isFinished
+    completed
+    score
 
     constructor(date, numberRound, numberMatch, ...participantList) {
         this.participantList = [...participantList]
         this.numberRound = numberRound
         this.numberMatch = numberMatch
         this.date = date
-        this.isFinished = date < new Date().toISOString().substring(0,10)
+        this.completed = date < new Date().toISOString().substring(0, 10)
+        this.score = 0
     }
 }
 

@@ -28,13 +28,19 @@ export default {
     // список раундов
     createRoundList({commit, getters}) {
         let tournamentRoundList = []
-
+        let matchl = getters.getMatchList
         for (let i = 0; i < getters.getTournament.roundCount; i++) {
-            tournamentRoundList.push(new TournamentRound(i + 1))
+            tournamentRoundList.push(new TournamentRound(i + 1, matchl))
         }
+        console.log(tournamentRoundList)
         commit('SET_ROUND_LIST', tournamentRoundList)
+
     },
-    //список матчей для рауднда
+    createScore({commit, getters}) {
+        let score = getters.getTournament.score
+        commit('SET_SCORE', score)
+    },
+    //список матчей для раунда
     createMatchList({commit, getters}) {
         let matchList = []
         let participant1 = new TournamentRoundMatchParticipant({
@@ -44,13 +50,12 @@ export default {
             score: 0
         })
         let participant2 = new TournamentRoundMatchParticipant({
-            id: `f${(+new Date).toString(15)}`,
+            id: `e${(+new Date).toString(15)}`,
             name: 'Player 2',
             team: {},
             score: 0
 
         })
-
         getters.getRoundList.forEach((round) => {
             let numberRound = round.numberRound
             for (let i = 0; i < getters.getParticipantCount / Math.pow(2, numberRound); i++) {
@@ -58,8 +63,9 @@ export default {
                 let currentYear = new Date().getFullYear()
                 let month = Math.floor(Math.random() * 11)
                 let date = Math.floor(Math.random() * 31)
-                let currentMatch = new TournamentRoundMatch(new Date(currentYear, month, date ).toISOString().substring(0,10), numberRound, numberMatch, participant1, participant2)
+                let currentMatch = new TournamentRoundMatch(new Date(currentYear, month, date).toISOString().substring(0, 10), numberRound, numberMatch, participant1, participant2)
                 matchList.push(currentMatch)
+                console.log(currentMatch)
             }
         })
         commit('SET_MATCH_LIST', matchList)

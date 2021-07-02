@@ -10,6 +10,11 @@
             required
             @keydown.enter="addTournament"
             v-model="tournament.participantsCount"/>
+        <b-form-input
+            placeholder="Количесво очков за матч"
+            type="number"
+            v-model="tournament.matchScore"
+        />
       </div>
       <b-button
           variant="success"
@@ -22,7 +27,8 @@
     </div>
     <div v-if="getParticipantCount">
       <template>
-        <tournament-table/>
+        <tournament-table :match-score="tournament.matchScore"
+        />
       </template>
     </div>
     <template>
@@ -45,7 +51,7 @@ export default {
   data() {
     return {
       count: null,
-      error:false,
+      error: false,
       tournament: new Tournament({
         name: '',
         participantsCount: this.participantsCount,
@@ -57,6 +63,7 @@ export default {
         prize: '',
         winner: '',
         loser: '',
+        matchScore: this.matchScore
       })
     }
   },
@@ -68,6 +75,7 @@ export default {
       this.createTournament(this.tournament)
           .then(() => {
             this.tournament.participantsCount = ''
+            console.log(typeof this.tournament.matchScore)
           })
           .catch(() => {
             this.error = true

@@ -1,9 +1,10 @@
 <template>
   <div class="table">
-      <tournament
-          :match-list="getMatchList"
-          :round-list="getRoundList"
-      />
+    <tournament
+        :match-list="getMatchList"
+        :round-list="getRoundList"
+        :match-score="matchScore"
+    />
   </div>
 </template>
 
@@ -17,10 +18,16 @@ export default {
   data() {
     return {}
   },
+  props: {
+    matchScore:{
+
+    }
+  },
   computed: {
     ...mapGetters([
       'getRoundList',
-      'getMatchList'
+      'getMatchList',
+      'getTournament'
     ])
   }
 }
@@ -31,7 +38,8 @@ export default {
   display: -webkit-box;
 
 }
-.table{
+
+.table {
   margin-top: 15px;
 }
 

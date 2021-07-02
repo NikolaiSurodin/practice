@@ -14,6 +14,9 @@ export default {
     },
     SET_MATCH_LIST(state, data) {
         state.matchList = data
+    },
+    SET_SCORE(state, data){
+        state.tournament.score = data
     }
 
 }

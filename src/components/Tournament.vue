@@ -4,6 +4,7 @@
          v-for="(round, id) in roundList" :key="id">
       <tournament-round :round="round"
                         :match-list="matchList"
+                        :match-score="matchScore"
       />
     </div>
   </div>
@@ -28,6 +29,9 @@ export default {
       type: Array,
       default: null,
       required: true
+    },
+    matchScore:{
+      type:Number
     }
   }
 }

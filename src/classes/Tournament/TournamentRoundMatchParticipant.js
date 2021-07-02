@@ -11,6 +11,7 @@ class TournamentRoundMatchParticipant {
         for (let key of Object.keys(options)) {
             let tempData = null
             if (Object.hasOwnProperty.call(options, key)) {
+
                 switch (key) {
                     case 'team':
                         tempData = new Team(options[key])
