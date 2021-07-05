@@ -10,6 +10,7 @@ class TournamentRoundMatchParticipant {
 
         for (let key of Object.keys(options)) {
             let tempData = null
+
             if (Object.hasOwnProperty.call(options, key)) {
 
                 switch (key) {
@@ -22,6 +23,7 @@ class TournamentRoundMatchParticipant {
             }
             this[key] = tempData
         }
+
     }
 }
 

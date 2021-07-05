@@ -2,21 +2,23 @@
   <div class="match"
        :class="{completedMatch:match.completed || isCompleted}"
   >
-    <img @click="addPoint()"
+    <img @click="addPoint(0)"
          class="avatar" src="../assets/avatar.jpg"
     />
 
     <span>{{ match.participantList[0].name }} - {{ match.participantList[1].name }}</span>
 
-    <img @click="addPoint()"
+    <img @click="addPoint(1)"
          class="avatar" src="../assets/avatar.jpg"
     />
 
-    <p class="text-center" v-if="!match.completed">
+    <div class="text-center" v-if="!match.completed || !isCompleted">
       {{ match.participantList[0].score }} - {{ match.participantList[1].score }}
-    </p>
+
+    </div>
 
     <p class="text-center">{{ match.date }}</p>
+
 
   </div>
 </template>
@@ -32,19 +34,21 @@ export default {
     match: {
       type: Object
     },
-    matchScore: {
-
-    }
   },
   methods: {
-    addPoint(){
-
+    addPoint(i) {
+      if (!this.isCompleted) {
+        this.$store.dispatch('addScore',
+            {
+              match: this.match,
+              participant: this.match.participantList[i]
+            })
+      }
     }
-
   },
   computed: {
     isCompleted() {
-      return this.matchScore === this.match.participantList[0].score + this.match.participantList[1].score
+      return this.match.score === this.match.participantList[0].score + this.match.participantList[1].score
     }
   }
 }
@@ -92,6 +96,7 @@ export default {
   background-color: #d2fcea;
   color: #e78a93;
   border: solid 1px green;
+
 }
 
 </style>

@@ -3,7 +3,6 @@
     <tournament
         :match-list="getMatchList"
         :round-list="getRoundList"
-        :match-score="matchScore"
     />
   </div>
 </template>
@@ -19,9 +18,7 @@ export default {
     return {}
   },
   props: {
-    matchScore:{
 
-    }
   },
   computed: {
     ...mapGetters([

@@ -1,9 +1,8 @@
-
 export default {
-    SET_TOURNAMENT(state, data){
+    SET_TOURNAMENT(state, data) {
         state.tournament = data
     },
-    SET_PARTICIPANT_COUNT(state, data){
+    SET_PARTICIPANT_COUNT(state, data) {
         state.participantsCount = data
     },
     SET_ROUND_COUNT(state, data) {
@@ -11,12 +10,18 @@ export default {
     },
     SET_ROUND_LIST(state, data) {
         state.roundList = data
+        state.tournament.roundList = data
     },
     SET_MATCH_LIST(state, data) {
         state.matchList = data
+        state.tournament.matchList = data
     },
-    SET_SCORE(state, data){
-        state.tournament.score = data
+    SET_SCORE_FOR_PLAYER(state, payload) {
+        payload.participant.score++
+    },
+    SET_SCORE_TOURNAMENT_MATCH(state, data) {
+        state.tournament.scoreForMatch = data
+        state.matchList.forEach(e => e.score = data)
     }
 
 }

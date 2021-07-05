@@ -13,7 +13,7 @@
         <b-form-input
             placeholder="Количесво очков за матч"
             type="number"
-            v-model="tournament.matchScore"
+            v-model="tournament.scoreForMatch"
         />
       </div>
       <b-button
@@ -27,7 +27,7 @@
     </div>
     <div v-if="getParticipantCount">
       <template>
-        <tournament-table :match-score="tournament.matchScore"
+        <tournament-table :score-for-match="tournament.scoreForMatch"
         />
       </template>
     </div>
@@ -63,7 +63,7 @@ export default {
         prize: '',
         winner: '',
         loser: '',
-        matchScore: this.matchScore
+        scoreForMatch: this.scoreForMatch
       })
     }
   },
@@ -75,10 +75,9 @@ export default {
       this.createTournament(this.tournament)
           .then(() => {
             this.tournament.participantsCount = ''
-            console.log(typeof this.tournament.matchScore)
           })
           .catch(() => {
-            this.error = true
+           this.error = true
           })
     },
     closePopup() {

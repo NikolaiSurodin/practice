@@ -6,7 +6,6 @@
       <li class="matchItem">
         <tournament-match
             :match="match"
-            :match-score="matchScore"
         />
       </li>
     </ul>
@@ -33,9 +32,6 @@ export default {
       type: Array,
       required: true,
       default: null
-    },
-    matchScore: {
-
     }
   },
   methods: {
