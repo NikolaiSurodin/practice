@@ -11,7 +11,6 @@
 
 <script>
 import TournamentRound from "@/components/TournamentRound";
-
 export default {
   name: "Tournament",
   components: {TournamentRound},
@@ -34,5 +33,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

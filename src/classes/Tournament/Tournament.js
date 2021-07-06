@@ -7,14 +7,12 @@ class Tournament {
     roundCount
     roundList
     participantList
-    roundList
     start
     end
     minParticipantsNumber// минимум для турнира
     prize
     winner
-    loser
-    scoreForMatch // счет установленный для матчей
+    numberOfGames // счет установленный для матчей
 
     constructor(options = {}) {
         this.id = `f${(+new Date).toString(15)}`
@@ -22,7 +20,7 @@ class Tournament {
 
         for (let key of Object.keys(options)) {
             this.participantsCount = Number(this.participantsCount)
-            this.scoreForMatch = Number(this.scoreForMatch)
+            this.numberOfGames = Number(this.numberOfGames)
             let tempData = null
             if (Object.hasOwnProperty.call(options, key)) {
                 switch (key) {

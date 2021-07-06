@@ -13,7 +13,7 @@
         <b-form-input
             placeholder="Количесво очков за матч"
             type="number"
-            v-model="tournament.scoreForMatch"
+            v-model="tournament.numberOfGames"
         />
       </div>
       <b-button
@@ -27,7 +27,7 @@
     </div>
     <div v-if="getParticipantCount">
       <template>
-        <tournament-table :score-for-match="tournament.scoreForMatch"
+        <tournament-table
         />
       </template>
     </div>
@@ -62,8 +62,7 @@ export default {
         minParticipantsNumber: '',
         prize: '',
         winner: '',
-        loser: '',
-        scoreForMatch: this.scoreForMatch
+        numberOfGames: this.numberOfGames
       })
     }
   },

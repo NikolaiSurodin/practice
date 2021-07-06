@@ -16,8 +16,8 @@ export default {
         state.matchList = data
         state.tournament.matchList = data
     },
-    SET_SCORE_FOR_PLAYER(state, payload) {
-        payload.participant.score++
+    SET_SCORE_FOR_PLAYER() {
+
     },
     SET_SCORE_TOURNAMENT_MATCH(state, data) {
         state.tournament.scoreForMatch = data

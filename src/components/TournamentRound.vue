@@ -15,7 +15,6 @@
 
 <script>
 import TournamentMatch from "@/components/TournamentMatch";
-
 export default {
   name: "TournamentRound",
   components: {TournamentMatch},
@@ -44,7 +43,6 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,700&display=swap');
-
 .roundNumber {
   font-family: 'Noto Serif', serif;
   justify-content: center;
@@ -54,7 +52,6 @@ export default {
   border: solid #000000;
   border-radius: 10px;
 }
-
 .matchItem {
   list-style-type: none;
   display: flex;
@@ -63,6 +60,4 @@ export default {
   flex-direction: column;
   align-items: flex-end;
 }
-
-
 </style>

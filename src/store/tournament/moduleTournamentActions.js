@@ -41,7 +41,8 @@ export default {
         commit('SET_SCORE_TOURNAMENT_MATCH', scoreForMatch)
     },
     addScore({commit}, payload) {
-        commit('SET_SCORE_FOR_PLAYER', payload)
+        payload.participant.score++
+        commit('SET_SCORE_FOR_PLAYER')
     },
     //список матчей для раунда
     createMatchList({commit, getters}) {
