@@ -1,6 +1,6 @@
 <template>
   <div class="match"
-       :class="{expiredMatch:match.expired, completedMatch: match.isCompleted() }"
+       :class="{expiredMatch:match.expired, completedMatch: match.isCompleted(), lastMatch:isLastMatch }"
   >
     <img @click="addPoint(0)"
          class="avatar" src="../assets/avatar.jpg"
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 
 export default {
   name: "TournamentMatch",
@@ -34,22 +35,24 @@ export default {
     match: {
       type: Object
     },
-  },
-  methods: {
-    addPoint(i) {
-      if (!this.match.isCompleted() && this.match.expired) {
-        this.$store.dispatch('addScore',
-            {
-              match: this.match,
-              participant: this.match.participantList[i]
-            })
-
-      }
+    isLastMatch: {
+      type: Boolean
     }
   },
-  computed:{
-    winner() {
-      return this.match.winner()
+  methods: {
+    ...mapActions([
+      'addScore',
+      'tournamentWinner'
+    ]),
+    addPoint(i) {
+      if (!this.match.isCompleted() && this.match.expired) {
+        this.addScore({
+          participant: this.match.participantList[i]
+        })
+        if (this.isLastMatch) {
+          this.tournamentWinner()
+        }
+      }
     }
   }
 }
@@ -59,7 +62,7 @@ export default {
 .match {
   background-color: #0b0b3e;
   border-radius: 5px;
-  height: 7rem;
+  height: 6rem;
   max-width: 15rem;
   margin-top: 15px;
   color: #f69ea5;
@@ -71,7 +74,6 @@ export default {
 }
 
 .match:after {
-
 
 }
 
@@ -99,10 +101,17 @@ export default {
   border: solid 1px #880505;
 
 }
+
 .completedMatch {
   background-color: #afc2f1;
   color: #ff0016;
   border: solid 1px #9fb3f8;
+}
+
+.lastMatch {
+  background-color: #fffa00;
+  color: #f81d31;
+  border: solid 1px #880505;
 }
 
 </style>

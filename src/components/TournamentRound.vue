@@ -6,6 +6,7 @@
       <li class="matchItem">
         <tournament-match
             :match="match"
+            :is-last-match="match === matchList[matchList.length - 1]"
         />
       </li>
     </ul>

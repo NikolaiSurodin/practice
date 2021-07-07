@@ -11,7 +11,7 @@
             @keydown.enter="addTournament"
             v-model="tournament.participantsCount"/>
         <b-form-input
-            placeholder="Количесво очков за матч"
+            placeholder="Количество очков за матч"
             type="number"
             v-model="tournament.numberOfGames"
         />
@@ -61,7 +61,7 @@ export default {
         end: new Date(),
         minParticipantsNumber: '',
         prize: '',
-        winner: '',
+        winner: this.winner,
         numberOfGames: this.numberOfGames
       })
     }
@@ -76,7 +76,7 @@ export default {
             this.tournament.participantsCount = ''
           })
           .catch(() => {
-           this.error = true
+            this.error = true
           })
     },
     closePopup() {
@@ -85,7 +85,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getParticipantCount'
+      'getParticipantCount',
+      'getTournament'
     ]),
     valid() {
       return this.tournament.participantsCount

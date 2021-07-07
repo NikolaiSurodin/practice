@@ -9,15 +9,21 @@ class TournamentRoundMatch {
     participantList
     expired // дата игры не наступила
     score
+    winn
 
-    constructor(date, numberRound, numberMatch, ...participantList) {
+    constructor(numberRound, numberMatch, ...participantList) {
+
         this.participantList = [...participantList]
         this.numberRound = numberRound
         this.numberMatch = numberMatch
-        this.date = date
-        this.expired = date < new Date().toISOString().substring(0, 10)
+        let currentYear = new Date().getFullYear()
+        let month = Math.floor(Math.random() * 11)
+        let number = Math.floor(Math.random() * 31)
+        this.date = new Date(currentYear, month, number).toISOString().substring(0, 10)
+        this.expired = this.date < new Date().toISOString().substring(0, 10)
         this.score = 0
-
+        this.id = Math.random().toString(36).slice(-6);
+        this.winn = this.winner()
     }
 
     isCompleted() {
@@ -27,15 +33,7 @@ class TournamentRoundMatch {
     }
 
     winner() {
-        let participantList = this.participantList.map(el => {
-            return {
-                name: el.name,
-                score: el.score
-            }
-        })
-        participantList.sort((a, b) => b.score - a.score)
-        return participantList[0]
-
+        return this.participantList[0].score > this.participantList[1].score ? this.participantList[0] : this.participantList[1]
     }
 }
 

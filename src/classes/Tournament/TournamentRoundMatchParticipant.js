@@ -7,7 +7,7 @@ class TournamentRoundMatchParticipant {
     score
 
     constructor(options = {}) {
-
+        this.id = Math.random().toString(36).slice(-6);
         for (let key of Object.keys(options)) {
             let tempData = null
 
