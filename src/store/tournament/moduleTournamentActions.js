@@ -9,6 +9,7 @@ export default {
             let tournament = new Tournament(data)
             if (tournament.participantsCount === Math.pow(2, Math.floor(Math.log(tournament.participantsCount) / Math.log(2)))) {
                 commit('SET_TOURNAMENT', tournament)
+                dispatch('createName')
                 commit('SET_PARTICIPANT_COUNT', tournament.participantsCount)
                 dispatch('createRoundCount')
                 dispatch('createRoundList')
@@ -44,14 +45,8 @@ export default {
             for (let i = 0; i < getters.getParticipantCount / Math.pow(2, numberRound); i++) {
                 let numberMatch = i + 1
                 let currentMatch = new TournamentRoundMatch(numberRound, numberMatch,
-                    new TournamentRoundMatchParticipant({
-                        name: 'Player1',
-                        score: 0,
-                    }),
-                    new TournamentRoundMatchParticipant({
-                        name: 'Player2',
-                        score: 0,
-                    }))
+                    new TournamentRoundMatchParticipant(),
+                    new TournamentRoundMatchParticipant())
                 matchList.push(currentMatch)
             }
         })
@@ -61,15 +56,15 @@ export default {
         let scoreForMatch = getters.getTournament.scoreForMatch
         commit('SET_SCORE_TOURNAMENT_MATCH', scoreForMatch)
     },
-    addScore({commit}, payload) {
+    addPointForParticipant({commit}, payload) {
         payload.participant.score++
         commit('SET_SCORE_FOR_PLAYER', payload)
     },
-    tournamentWinner({commit, getters}) {
+    createTournamentWinner({commit, getters}) {
         let matchList = getters.getMatchList
         let lastMatch = matchList[matchList.length - 1]
         let lastParticipantList = lastMatch.participantList
         let winner = lastParticipantList[0].score > lastParticipantList[1].score ? lastParticipantList[0] : lastParticipantList[1]
-        commit('WINNER', winner)
+        commit('SET_TOURNAMENT_WINNER', winner)
     }
 }

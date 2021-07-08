@@ -9,7 +9,7 @@ class TournamentRoundMatch {
     participantList
     expired // дата игры не наступила
     score
-    winn
+    matchWinner
 
     constructor(numberRound, numberMatch, ...participantList) {
 
@@ -23,7 +23,7 @@ class TournamentRoundMatch {
         this.expired = this.date < new Date().toISOString().substring(0, 10)
         this.score = 0
         this.id = Math.random().toString(36).slice(-6);
-        this.winn = this.winner()
+        this.matchWinner = this.getWinner()
     }
 
     isCompleted() {
@@ -32,7 +32,7 @@ class TournamentRoundMatch {
         return this.score === this.participantList[0].score + this.participantList[1].score
     }
 
-    winner() {
+    getWinner() {
         return this.participantList[0].score > this.participantList[1].score ? this.participantList[0] : this.participantList[1]
     }
 }

@@ -41,16 +41,16 @@ export default {
   },
   methods: {
     ...mapActions([
-      'addScore',
-      'tournamentWinner'
+      'addPointForParticipant',
+      'createTournamentWinner'
     ]),
     addPoint(i) {
       if (!this.match.isCompleted() && this.match.expired) {
-        this.addScore({
+        this.addPointForParticipant({
           participant: this.match.participantList[i]
         })
         if (this.isLastMatch) {
-          this.tournamentWinner()
+          this.createTournamentWinner()
         }
       }
     }
@@ -63,7 +63,7 @@ export default {
   background-color: #0b0b3e;
   border-radius: 5px;
   height: 6rem;
-  max-width: 15rem;
+  width: 14rem;
   margin-top: 15px;
   color: #f69ea5;
   list-style-type: none;

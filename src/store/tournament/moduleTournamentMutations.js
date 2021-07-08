@@ -19,7 +19,7 @@ export default {
     SET_SCORE_FOR_PLAYER() {
 
     },
-    WINNER(state, data) {
+    SET_TOURNAMENT_WINNER(state, data) {
         state.tournament.winner = data
     },
     SET_SCORE_TOURNAMENT_MATCH(state, data) {
