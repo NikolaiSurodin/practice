@@ -1,5 +1,4 @@
 export default {
-    getNameList: state => state.nameList,
-    getNameListIndex: state => state.nameIndexList,
-    getUsedNameList: state => state.usedNameList
+    getUsedNameIndexList: state => state.usedNameIndexList,
+    getNameList: state => state.nameList
 }

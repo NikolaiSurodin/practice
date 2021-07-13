@@ -11,7 +11,8 @@ export default {
                 commit('SET_TOURNAMENT', tournament)
 
                 commit('SET_PARTICIPANT_COUNT', tournament.participantsCount)
-                dispatch('createNameList')
+
+                dispatch('getName')
                 dispatch('createRoundCount')
                 dispatch('createRoundList')
                 dispatch('createMatchList')

@@ -1,40 +1,28 @@
 export default {
-    createNameList({commit, getters}) {
-        let nameList = [
-            "Harry", "Ross",
-            "Bruce", "Cook",
-            "Carolyn", "Morgan",
-            "Albert", "Walker",
-            "Randy", "Reed",
-            "Larry", "Barnes",
-            "Lois", "Wilson",
-            "Jesse", "Campbell",
-            "Ernest", "Rogers",
-            "Theresa", "Patterson",
-            "Henry", "Simmons",
-            "Michelle", "Perry",
-            "Frank", "Butler",
-            "Shirley"
-        ]
-
-        commit('SET_PARTICIPANT_NAME', nameList)
-        let indexNameList = []
-        let usedName = []
-        let participantCount = getters.getParticipantCount
-        for (let i = 0; i < participantCount; i++) {
-            let index = Math.floor(Math.random() * nameList.length)
-            let name = nameList[index]
+    getName({commit, getters}) {
+        return new Promise((resolve, reject) => {
+            let usedNameIndexList = getters.getUsedNameIndexList
+            let nameList = getters.getNameList
+            let randomNameListIndex = Math.floor(Math.random() * nameList.length)
+            let name = nameList[randomNameListIndex]
             let nameIndex = nameList.indexOf(name)
-            if (!indexNameList.includes(nameIndex)){
-                indexNameList.push(nameIndex)
-                usedName.push(nameList[nameIndex])
-            }
-        }
-        commit('SET_USED_NAME', usedName)
-        commit('SET_INDEX_LIST', indexNameList)
 
-    },
-    // getName({commit, getters}) {
-    //
-    // }
+            if (nameList.length <= usedNameIndexList.length) {
+               console.log('Свободных имен нет')
+            } else {
+                while (usedNameIndexList.includes(nameIndex)) {
+                    if (usedNameIndexList.length > 0 || usedNameIndexList.includes(nameIndex)) {
+                        randomNameListIndex = Math.floor(Math.random() * nameList.length)
+                        name = nameList[randomNameListIndex]
+                        nameIndex = nameList.indexOf(name)
+                    } else {
+                        break
+                    }
+                }
+                commit('ADD_USED_NAME_INDEX', nameIndex)
+                resolve(name)
+            }
+            reject(err => console.log(err))
+        })
+    }
 }

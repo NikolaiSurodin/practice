@@ -1,5 +1,5 @@
 import {Team} from '../Team/Team'
-//import {store} from "@/store";
+import {store} from "@/store";
 
 class TournamentRoundMatchParticipant {
     id
@@ -9,7 +9,7 @@ class TournamentRoundMatchParticipant {
 
     constructor(options = {}) {
         this.id = Math.random().toString(36).slice(-6)
-        this.name = this.getName()
+        this.name = this.getName() || 'Player'
         this.score = 0
         for (let key of Object.keys(options)) {
             let tempData = null
@@ -30,7 +30,9 @@ class TournamentRoundMatchParticipant {
     }
 
     getName() {
-
+        store.dispatch('getName')
+            .then(name => this.name = name)
+            .catch(err => console.log(err))
     }
 }
 
