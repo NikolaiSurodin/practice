@@ -9,8 +9,9 @@ export default {
             let tournament = new Tournament(data)
             if (tournament.participantsCount === Math.pow(2, Math.floor(Math.log(tournament.participantsCount) / Math.log(2)))) {
                 commit('SET_TOURNAMENT', tournament)
-                dispatch('createName')
+
                 commit('SET_PARTICIPANT_COUNT', tournament.participantsCount)
+                dispatch('createNameList')
                 dispatch('createRoundCount')
                 dispatch('createRoundList')
                 dispatch('createMatchList')

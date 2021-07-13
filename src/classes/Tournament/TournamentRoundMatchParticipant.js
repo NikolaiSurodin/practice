@@ -1,5 +1,5 @@
 import {Team} from '../Team/Team'
-import {store} from "@/store";
+//import {store} from "@/store";
 
 class TournamentRoundMatchParticipant {
     id
@@ -30,9 +30,7 @@ class TournamentRoundMatchParticipant {
     }
 
     getName() {
-        let nameList = store.getters.getNameList
-        let name =  Math.floor(Math.random() * nameList.length)
-        return  nameList[name]
+
     }
 }
 

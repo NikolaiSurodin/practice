@@ -89,9 +89,9 @@ export default {
 }
 
 .avatar:hover {
-  -webkit-transform: scale(1.5, 1.5);
-  -ms-transform: scale(1.5, 1.5);
-  transform: scale(1.5, 1.5);
+  -webkit-transform: scale(1.3, 1.3);
+  -ms-transform: scale(1.3, 1.3);
+  transform: scale(1.3, 1.3);
   cursor: pointer;
 }
 

@@ -24,6 +24,13 @@
           @click="addTournament">
         Создать
       </b-button>
+      <b-button
+          variant="success"
+          class="mt-3"
+          type="button"
+          @click="add">
+        ADD
+      </b-button>
     </div>
     <div v-if="getParticipantCount">
       <template>
@@ -81,6 +88,33 @@ export default {
     },
     closePopup() {
       this.error = false
+    },
+    add() {
+      let nameList = [
+        "Harry", "Ross",
+        "Bruce", "Cook",
+        "Carolyn", "Morgan",
+        "Albert", "Walker",
+        "Randy", "Reed",
+        "Larry", "Barnes",
+        "Lois", "Wilson",
+        "Jesse", "Campbell",
+        "Ernest", "Rogers",
+        "Theresa", "Patterson",
+        "Henry", "Simmons",
+        "Michelle", "Perry",
+        "Frank", "Butler",
+        "Shirley"
+      ]
+      let nameIndexList = []
+      let index = Math.floor(Math.random() * nameList.length)
+      let name = nameList[index]
+      let nameIndex = nameList.indexOf(name)
+      //console.log(name)
+      nameIndexList.push(nameIndex)
+      console.log(nameIndexList)
+
+
     }
   },
   computed: {
