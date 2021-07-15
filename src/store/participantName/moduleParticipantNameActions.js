@@ -1,6 +1,7 @@
 export default {
     getName({commit, getters}) {
         return new Promise((resolve, reject) => {
+            //let participantCount = getters.getParticipantCount
             let usedNameIndexList = getters.getUsedNameIndexList
             let nameList = getters.getNameList
             let randomNameListIndex = Math.floor(Math.random() * nameList.length)

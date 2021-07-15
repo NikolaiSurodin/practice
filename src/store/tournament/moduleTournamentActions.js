@@ -12,7 +12,6 @@ export default {
 
                 commit('SET_PARTICIPANT_COUNT', tournament.participantsCount)
 
-                dispatch('getName')
                 dispatch('createRoundCount')
                 dispatch('createRoundList')
                 dispatch('createMatchList')
@@ -58,9 +57,16 @@ export default {
         let scoreForMatch = getters.getTournament.scoreForMatch
         commit('SET_SCORE_TOURNAMENT_MATCH', scoreForMatch)
     },
-    addPointForParticipant({commit}, payload) {
+    addPointForParticipant({commit, getters}, payload) {
         payload.participant.score++
+        let participantList = payload.participantList
+        let match = payload.match
+        let scoreOfTournamentGames = getters.getTournament.numberOfGames
         commit('SET_SCORE_FOR_PLAYER', payload)
+        if (participantList[0].score + participantList[1].score === scoreOfTournamentGames){
+         match.matchWinner =  participantList[0].score > participantList[1].score ? participantList[0] : participantList[1]
+        }
+
     },
     createTournamentWinner({commit, getters}) {
         let matchList = getters.getMatchList

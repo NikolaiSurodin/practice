@@ -2,7 +2,6 @@ import {store} from '@/store'
 
 class TournamentRoundMatch {
     id
-    name
     date
     numberRound
     numberMatch
@@ -12,7 +11,6 @@ class TournamentRoundMatch {
     matchWinner
 
     constructor(numberRound, numberMatch, ...participantList) {
-
         this.participantList = [...participantList]
         this.numberRound = numberRound
         this.numberMatch = numberMatch
@@ -23,7 +21,7 @@ class TournamentRoundMatch {
         this.expired = this.date < new Date().toISOString().substring(0, 10)
         this.score = 0
         this.id = Math.random().toString(36).slice(-6);
-        this.matchWinner = this.getWinner()
+
     }
 
     isCompleted() {
@@ -32,9 +30,6 @@ class TournamentRoundMatch {
         return this.score === this.participantList[0].score + this.participantList[1].score
     }
 
-    getWinner() {
-        return this.participantList[0].score > this.participantList[1].score ? this.participantList[0] : this.participantList[1]
-    }
 }
 
 export {TournamentRoundMatch}

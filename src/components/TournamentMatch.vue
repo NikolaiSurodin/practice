@@ -47,7 +47,9 @@ export default {
     addPoint(i) {
       if (!this.match.isCompleted() && this.match.expired) {
         this.addPointForParticipant({
-          participant: this.match.participantList[i]
+          participant: this.match.participantList[i],
+          participantList:this.match.participantList,
+          match:this.match
         })
         if (this.isLastMatch) {
           this.createTournamentWinner()
