@@ -1,7 +1,6 @@
 import {Tournament} from "@/classes/Tournament/Tournament";
 import {TournamentRound} from "@/classes/Tournament/TournamentRound";
 import {TournamentRoundMatch} from "@/classes/Tournament/TournamentRoundMatch";
-import {TournamentRoundMatchParticipant} from "@/classes/Tournament/TournamentRoundMatchParticipant";
 
 export default {
     createTournament({commit, dispatch}, data) {
@@ -45,10 +44,8 @@ export default {
             let numberRound = round.numberRound
             for (let i = 0; i < getters.getParticipantCount / Math.pow(2, numberRound); i++) {
                 let numberMatch = i + 1
-                let currentMatch = new TournamentRoundMatch(numberRound, numberMatch,
-                    new TournamentRoundMatchParticipant(),
-                    new TournamentRoundMatchParticipant())
-                matchList.push(currentMatch)
+                    let currentMatch = new TournamentRoundMatch(numberRound, numberMatch)
+                    matchList.push(currentMatch)
             }
         })
         commit('SET_MATCH_LIST', matchList)
@@ -65,6 +62,7 @@ export default {
         commit('SET_SCORE_FOR_PLAYER', payload)
         if (participantList[0].score + participantList[1].score === scoreOfTournamentGames){
          match.matchWinner =  participantList[0].score > participantList[1].score ? participantList[0] : participantList[1]
+            commit('SET_TOURNAMENT_MATCH_WIN_LIST', match.matchWinner)
         }
 
     },

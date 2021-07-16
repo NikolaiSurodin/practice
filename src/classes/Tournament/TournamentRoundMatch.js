@@ -1,4 +1,5 @@
 import {store} from '@/store'
+import {TournamentRoundMatchParticipant} from "@/classes/Tournament/TournamentRoundMatchParticipant";
 
 class TournamentRoundMatch {
     id
@@ -10,8 +11,8 @@ class TournamentRoundMatch {
     score
     matchWinner
 
-    constructor(numberRound, numberMatch, ...participantList) {
-        this.participantList = [...participantList]
+    constructor(numberRound, numberMatch) {
+        this.participantList = this.getParticipant()
         this.numberRound = numberRound
         this.numberMatch = numberMatch
         let currentYear = new Date().getFullYear()
@@ -29,7 +30,9 @@ class TournamentRoundMatch {
         this.score = tournament.numberOfGames
         return this.score === this.participantList[0].score + this.participantList[1].score
     }
-
+    getParticipant() {
+        return [new TournamentRoundMatchParticipant(), new TournamentRoundMatchParticipant()]
+    }
 }
 
 export {TournamentRoundMatch}

@@ -3,5 +3,6 @@ export default {
     matchList: [],
     roundList: [],
     participantList:[],
+    winnerList:[],
     participantsCount: null
 }

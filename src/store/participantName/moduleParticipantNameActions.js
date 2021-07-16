@@ -1,7 +1,6 @@
 export default {
     getName({commit, getters}) {
         return new Promise((resolve, reject) => {
-            //let participantCount = getters.getParticipantCount
             let usedNameIndexList = getters.getUsedNameIndexList
             let nameList = getters.getNameList
             let randomNameListIndex = Math.floor(Math.random() * nameList.length)
@@ -9,13 +8,14 @@ export default {
             let nameIndex = nameList.indexOf(name)
 
             if (nameList.length <= usedNameIndexList.length) {
-               console.log('Свободных имен нет')
+                console.log('Свободных имен нет')
             } else {
                 while (usedNameIndexList.includes(nameIndex)) {
-                    if (usedNameIndexList.length > 0 || usedNameIndexList.includes(nameIndex)) {
-                        randomNameListIndex = Math.floor(Math.random() * nameList.length)
-                        name = nameList[randomNameListIndex]
-                        nameIndex = nameList.indexOf(name)
+                    if (usedNameIndexList.length || usedNameIndexList.includes(nameIndex)) {
+                            randomNameListIndex = Math.floor(Math.random() * nameList.length)
+                            name = nameList[randomNameListIndex]
+                            nameIndex = nameList.indexOf(name)
+
                     } else {
                         break
                     }

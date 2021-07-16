@@ -25,5 +25,8 @@ export default {
     SET_SCORE_TOURNAMENT_MATCH(state, data) {
         state.tournament.scoreForMatch = data
         state.matchList.forEach(e => e.score = data)
+    },
+    SET_TOURNAMENT_MATCH_WIN_LIST(state, data){
+        state.winnerList.push(data)
     }
 }
