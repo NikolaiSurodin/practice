@@ -25,7 +25,9 @@
         Создать
       </b-button>
       <template>
-        <div v-if="winner">Победитель Турнира:  {{winner}}</div>
+        <div class="winner" v-if="winner">
+          <p class="winner-text">Победитель Турнира: {{ winner }}</p>
+        </div>
       </template>
     </div>
     <div v-if="getParticipantCount">
@@ -94,9 +96,9 @@ export default {
     valid() {
       return this.tournament.participantsCount
     },
-     winner() {
+    winner() {
       return this.getTournament.winner?.name
-     }
+    }
   }
 
 }
@@ -114,4 +116,18 @@ export default {
   max-width: 250px;
 }
 
+.winner {
+  width: 250px;
+  height: 100px;
+  border: 1px solid grey;
+  border-radius: 15px;
+  position: center;
+}
+.winner-text{
+  text-align: center;
+  right: 0;
+  bottom: 0;
+  font-size: 20px ;
+  top: 60px
+}
 </style>
