@@ -10,9 +10,10 @@ class TournamentRoundMatch {
     expired // дата игры не наступила
     score
     matchWinner
+    completed
 
     constructor(numberRound, numberMatch) {
-        this.participantList = this.getParticipant()
+        this.participantList = numberRound === 1 ? [new TournamentRoundMatchParticipant(), new TournamentRoundMatchParticipant()] : [new TournamentRoundMatchParticipant('Player'), new TournamentRoundMatchParticipant('Player')]
         this.numberRound = numberRound
         this.numberMatch = numberMatch
         let currentYear = new Date().getFullYear()
@@ -21,17 +22,15 @@ class TournamentRoundMatch {
         this.date = new Date(currentYear, month, number).toISOString().substring(0, 10)
         this.expired = this.date < new Date().toISOString().substring(0, 10)
         this.score = 0
-        this.id = Math.random().toString(36).slice(-6);
+        this.id = Math.random().toString(36).slice(-6)
+        this.completed = false
 
     }
 
-    isCompleted() {
+    isFinished() {
         let tournament = store.getters.getTournament
         this.score = tournament.numberOfGames
         return this.score === this.participantList[0].score + this.participantList[1].score
-    }
-    getParticipant() {
-        return [new TournamentRoundMatchParticipant(), new TournamentRoundMatchParticipant()]
     }
 }
 

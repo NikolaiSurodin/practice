@@ -8,9 +8,7 @@ export default {
             let tournament = new Tournament(data)
             if (tournament.participantsCount === Math.pow(2, Math.floor(Math.log(tournament.participantsCount) / Math.log(2)))) {
                 commit('SET_TOURNAMENT', tournament)
-
                 commit('SET_PARTICIPANT_COUNT', tournament.participantsCount)
-
                 dispatch('createRoundCount')
                 dispatch('createRoundList')
                 dispatch('createMatchList')
@@ -44,8 +42,8 @@ export default {
             let numberRound = round.numberRound
             for (let i = 0; i < getters.getParticipantCount / Math.pow(2, numberRound); i++) {
                 let numberMatch = i + 1
-                    let currentMatch = new TournamentRoundMatch(numberRound, numberMatch)
-                    matchList.push(currentMatch)
+                let currentMatch = new TournamentRoundMatch(numberRound, numberMatch)
+                matchList.push(currentMatch)
             }
         })
         commit('SET_MATCH_LIST', matchList)
@@ -55,14 +53,34 @@ export default {
         commit('SET_SCORE_TOURNAMENT_MATCH', scoreForMatch)
     },
     addPointForParticipant({commit, getters}, payload) {
-        payload.participant.score++
         let participantList = payload.participantList
         let match = payload.match
+        let matchId = match.id
+        let matchList = getters.getMatchList
         let scoreOfTournamentGames = getters.getTournament.numberOfGames
-        commit('SET_SCORE_FOR_PLAYER', payload)
-        if (participantList[0].score + participantList[1].score === scoreOfTournamentGames){
-         match.matchWinner =  participantList[0].score > participantList[1].score ? participantList[0] : participantList[1]
-            commit('SET_TOURNAMENT_MATCH_WIN_LIST', match.matchWinner)
+        let sumParticipantScore = (participantList[0].score + participantList[1].score) + 1
+
+        if (payload.participant.score < scoreOfTournamentGames && payload.participant.name !== 'Player') {
+            payload.participant.score++
+            commit('SET_SCORE_FOR_PLAYER', payload)
+            if (sumParticipantScore === scoreOfTournamentGames) {
+                match.matchWinner = participantList[0].score > participantList[1].score ? participantList[0] : participantList[1]
+                commit('SET_TOURNAMENT_MATCH_WIN_LIST', match.matchWinner)
+            }
+        }
+        if (sumParticipantScore === scoreOfTournamentGames) {
+            let winner =  participantList[0].score > participantList[1].score ? participantList[0] : participantList[1]
+            let nextMatchParticipant = null
+            let participantIndex = null
+
+            match.numberMatch % 2 === 0 ? nextMatchParticipant = match.numberMatch : nextMatchParticipant = match.numberMatch + 1
+            match.numberMatch % 2 === 0 ? participantIndex = 1 : participantIndex = 0
+            commit('SET_COMPLETED', matchList.indexOf(match))
+
+            if(match.numberRound + 1 <= getters.getTournament.roundCount){
+                commit('SET_MATCH_WINNER', {matchId, winner})
+                commit('SET_WINNER_PARTICIPANT', {id: winner.id, name: winner.name, numberRound: match.numberRound + 1, numberMatch: nextMatchParticipant / 2, participantIndex})
+            }
         }
 
     },

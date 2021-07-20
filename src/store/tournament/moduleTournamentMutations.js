@@ -28,5 +28,18 @@ export default {
     },
     SET_TOURNAMENT_MATCH_WIN_LIST(state, data){
         state.winnerList.push(data)
+    },
+    SET_COMPLETED(state, i) {
+        state.matchList[i].completed = true
+    },
+    SET_WINNER_PARTICIPANT(state, {id, name,  numberRound, numberMatch, participantIndex}){
+        let match = state.matchList.find(match => match.numberRound === numberRound && match.numberMatch === numberMatch)
+        Object.assign(match.participantList[participantIndex], {
+            id: id,
+            name: name
+        })
+    },
+    SET_MATCH_WINNER(state,{matchId, winner}) {
+        state.matchList.find(match => match.id === matchId ).winner = winner
     }
 }

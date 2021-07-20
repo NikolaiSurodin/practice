@@ -24,6 +24,9 @@
           @click="addTournament">
         Создать
       </b-button>
+      <template>
+        <div v-if="winner">Победитель Турнира:  {{winner}}</div>
+      </template>
     </div>
     <div v-if="getParticipantCount">
       <template>
@@ -90,7 +93,10 @@ export default {
     ]),
     valid() {
       return this.tournament.participantsCount
-    }
+    },
+     winner() {
+      return this.getTournament.winner?.name
+     }
   }
 
 }

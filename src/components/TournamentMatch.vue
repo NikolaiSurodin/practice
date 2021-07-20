@@ -1,6 +1,6 @@
 <template>
   <div class="match"
-       :class="{expiredMatch:match.expired, completedMatch: match.isCompleted(), lastMatch:isLastMatch }"
+       :class="{expiredMatch:match.expired, completedMatch: match.isFinished(), lastMatch:isLastMatch }"
   >
     <img @click="addPoint(0)"
          class="avatar" src="../assets/avatar.jpg"
@@ -45,11 +45,11 @@ export default {
       'createTournamentWinner'
     ]),
     addPoint(i) {
-      if (!this.match.isCompleted() && this.match.expired) {
+      if (!this.match.isFinished() && this.match.expired) {
         this.addPointForParticipant({
           participant: this.match.participantList[i],
-          participantList:this.match.participantList,
-          match:this.match
+          participantList: this.match.participantList,
+          match: this.match
         })
         if (this.isLastMatch) {
           this.createTournamentWinner()
