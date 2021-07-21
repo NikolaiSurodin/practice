@@ -1,5 +1,5 @@
 <template>
-  <div class="form">
+  <div>
     <div class="container">
       <p class="text-center">Параметры турнира</p>
       <div class="input-group-sm">
@@ -24,11 +24,9 @@
           @click="addTournament">
         Создать
       </b-button>
-      <template>
-        <div class="winner" v-if="winner">
-          <p class="winner-text">Победитель Турнира: {{ winner }}</p>
-        </div>
-      </template>
+
+      <div v-if="winner"> Победитель Турнира: {{winner}}</div>
+
     </div>
     <div v-if="getParticipantCount">
       <template>
@@ -123,11 +121,14 @@ export default {
   border-radius: 15px;
   position: center;
 }
-.winner-text{
+
+.winner-text {
   text-align: center;
   right: 0;
   bottom: 0;
-  font-size: 20px ;
+  font-size: 20px;
   top: 60px
 }
+
+
 </style>
