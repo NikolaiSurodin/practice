@@ -21,6 +21,9 @@
 
 
   </div>
+
+
+
 </template>
 
 <script>
@@ -69,12 +72,16 @@ export default {
   margin-top: 15px;
   color: #f69ea5;
   list-style-type: none;
+  align-content: center;
 }
 
 .match::before {
 
 }
 
+.match:after {
+
+}
 .match:after {
 
 }
@@ -115,5 +122,7 @@ export default {
   color: #f81d31;
   border: solid 1px #880505;
 }
+
+
 
 </style>

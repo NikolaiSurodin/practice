@@ -75,7 +75,7 @@ export default {
             //устанавляиваем следующего участника матча и его индекс
             let nextMatchParticipant = null
             let participantIndex = null
-
+            // в следующем матче нужны два участинка из 2 предыдущих (четногоб нечетного)
             // если четный номер матча то вернем четный номер если нет то делаем его четным а при определнии делим на 2 для определения номера матча далее
             match.numberMatch % 2 === 0 ? nextMatchParticipant = match.numberMatch : nextMatchParticipant = match.numberMatch + 1
 
@@ -85,7 +85,7 @@ export default {
             commit('SET_COMPLETED', matchList.indexOf(match))
 
 
-            // пока номер раунда у матча не больше или равен общему кол-ву раундов то определяем победителей матчей
+            // если номер раунда у матча не больше или равен общему кол-ву раундов то определяем победителей матчей
             if (match.numberRound + 1 <= getters.getTournament.roundCount) {
                 commit('SET_MATCH_WINNER', {matchId, winner}) // передаем айди матча и его победителя
                 // передаем в виде объекта победителя
