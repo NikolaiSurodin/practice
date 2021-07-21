@@ -85,8 +85,10 @@ export default {
             commit('SET_COMPLETED', matchList.indexOf(match))
 
 
-            // если номер раунда у матча не больше или равен общему кол-ву раундов то определяем победителей матчей
+            // если номер раунда у матча меньше или равен общему кол-ву раундов то определяем победителя матчей
+            // для того чтобы прокидывать до крайнего матча
             if (match.numberRound + 1 <= getters.getTournament.roundCount) {
+                console.log(match.numberRound , getters.getTournament.roundCount)
                 commit('SET_MATCH_WINNER', {matchId, winner}) // передаем айди матча и его победителя
                 // передаем в виде объекта победителя
                 commit('SET_WINNER_PARTICIPANT', {
