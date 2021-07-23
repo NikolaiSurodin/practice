@@ -6,7 +6,9 @@
     </span>
   </span>
     <ul class="round-list">
-      <li class="match-item" v-for="(match, id) in matchListByRoundNumber(round.numberRound)" :key="id">
+
+      <li class="match-item"
+          v-for="(match, id) in matchListByRoundNumber(round.numberRound)" :key="id">
         <tournament-match
             :match="match"
             :is-last-match="match === matchList[matchList.length - 1]"

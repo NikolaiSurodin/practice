@@ -7,8 +7,9 @@ export default {
             let name = nameList[randomNameListIndex]
             let nameIndex = nameList.indexOf(name)
 
-            if (nameList.length <= usedNameIndexList.length) {
+            if (nameList.length === usedNameIndexList.length) {
                 console.log('Свободных имен нет')
+
             } else {
                 while (usedNameIndexList.includes(nameIndex)) {
                     if (usedNameIndexList.length || usedNameIndexList.includes(nameIndex)) {

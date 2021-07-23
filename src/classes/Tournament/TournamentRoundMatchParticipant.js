@@ -14,6 +14,7 @@ class TournamentRoundMatchParticipant {
         } else {
             store.dispatch('getName')
                 .then(name => this.name = name)
+
                 .catch(err => console.log(err))
         }
     }

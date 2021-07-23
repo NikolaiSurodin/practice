@@ -3,6 +3,7 @@
        :class="{
          expiredMatch:match.expired,
          completedMatch: match.isFinished(),
+         match_completed:match.completed,
          lastMatch:isLastMatch,
          twoMatchLine:match.numberMatch % 2 === 0,
          firstRoundMatch: match.participantList[0].name !== 'Player' && match.participantList[1].name !== 'Player'
@@ -68,10 +69,24 @@ export default {
 
 <style scoped>
 
-.match.lastMatch::after {
-  display: none;
+.match {
+  background-color: #0b0b3e;
+  border-radius: 5px;
+  height: 6rem;
+  width: 15rem;
+  margin-top: 15px;
+  color: #f69ea5;
+  list-style-type: none;
 }
 
+.match.match_completed:after{
+  border-color: #00ff05;
+  border-width: 2px;
+  position: absolute;
+  display: block;
+  width: 10px;
+  right: -11px;
+}
 .match::before {
   content: "";
   border-top: 2px solid #00195f;
@@ -96,27 +111,37 @@ export default {
   border-bottom-style: solid;
   top: 50%;
 }
-
-
-.match {
-  background-color: #0b0b3e;
-  border-radius: 5px;
-  height: 6rem;
-  width: 14rem;
-  margin-top: 15px;
-  color: #f69ea5;
-  list-style-type: none;
-  align-content: center;
-}
-
 .twoMatchLine:after {
   content: '';
-  border-right-style: solid;
   border-bottom-style: solid;
   height: 100%;
   top: -50%;
 }
+.expiredMatch {
+  background-color: #000032;
+  color: #f81d31;
+  border: solid 1px #880505;
 
+}
+
+.completedMatch {
+  background-color: #afc2f1;
+  color: #ff0016;
+  border: solid 1px #9fb3f8;
+}
+
+.match.lastMatch {
+  background-color: #fffa00;
+  color: #f81d31;
+  border: solid 1px #880505;
+}
+
+.lastMatch::after {
+  display: none;
+}
+.firstRoundMatch:before {
+  display: none;
+}
 .avatar {
   border-radius: 50%;
   height: 40px;
@@ -133,29 +158,6 @@ export default {
   -ms-transform: scale(1.3, 1.3);
   transform: scale(1.3, 1.3);
   cursor: pointer;
-}
-
-.expiredMatch {
-  background-color: #000032;
-  color: #f81d31;
-  border: solid 1px #880505;
-
-}
-
-.completedMatch {
-  background-color: #afc2f1;
-  color: #ff0016;
-  border: solid 1px #9fb3f8;
-}
-
-.lastMatch {
-  background-color: #fffa00;
-  color: #f81d31;
-  border: solid 1px #880505;
-}
-
-.match.firstRoundMatch:before {
-  display: none;
 }
 
 </style>
