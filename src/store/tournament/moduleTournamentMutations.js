@@ -34,9 +34,9 @@ export default {
         state.matchList[i].completed = true
     },
     //устанавливаем винера. находим матч, берем инфу о победителе
-    SET_WINNER_PARTICIPANT(state, {id, name,  numberRound, numberMatch, participantIndex}){
+    SET_WINNER_PARTICIPANT(state, {id, name,  numberRound, numberMatch, index}){
         let match = state.matchList.find(match => match.numberRound === numberRound && match.numberMatch === numberMatch)
-        Object.assign(match.participantList[participantIndex], {
+        Object.assign(match.participantList[index], {
             id: id,
             name: name
         })

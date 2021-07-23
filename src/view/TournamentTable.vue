@@ -1,10 +1,9 @@
 <template>
-  <div class="table">
     <tournament
         :match-list="getMatchList"
         :round-list="getRoundList"
     />
-  </div>
+
 </template>
 
 <script>
@@ -17,9 +16,6 @@ export default {
   data() {
     return {}
   },
-  props: {
-
-  },
   computed: {
     ...mapGetters([
       'getRoundList',
@@ -31,13 +27,5 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  display: -webkit-box;
-
-}
-
-.table {
-  margin-top: 15px;
-}
 
 </style>

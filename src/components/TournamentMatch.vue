@@ -1,10 +1,17 @@
 <template>
   <div class="match"
-       :class="{expiredMatch:match.expired, completedMatch: match.isFinished(), lastMatch:isLastMatch }"
+       :class="{
+         expiredMatch:match.expired,
+         completedMatch: match.isFinished(),
+         lastMatch:isLastMatch,
+         twoMatchLine:match.numberMatch % 2 === 0,
+         firstRoundMatch: match.participantList[0].name !== 'Player' && match.participantList[1].name !== 'Player'
+          }"
   >
     <img @click="addPoint(0)"
          class="avatar" src="../assets/avatar.jpg"
     />
+
 
     <span>{{ match.participantList[0].name }} - {{ match.participantList[1].name }}</span>
 
@@ -18,11 +25,7 @@
     </div>
 
     <p class="text-center" v-else>{{ match.date }}</p>
-
-
   </div>
-
-
 
 </template>
 
@@ -64,6 +67,37 @@ export default {
 </script>
 
 <style scoped>
+
+.match.lastMatch::after {
+  display: none;
+}
+
+.match::before {
+  content: "";
+  border-top: 2px solid #00195f;
+  position: absolute;
+  width: 1.3em;
+  left: -1.2em;
+  top: 50%;
+}
+
+.match:after {
+  content: '';
+  border-color: #00195f;
+  border-width: 2px;
+  position: absolute;
+  display: block;
+  width: 10px;
+  right: -11px;
+}
+
+.match:after {
+  border-right-style: solid;
+  border-bottom-style: solid;
+  top: 50%;
+}
+
+
 .match {
   background-color: #0b0b3e;
   border-radius: 5px;
@@ -75,15 +109,12 @@ export default {
   align-content: center;
 }
 
-.match::before {
-
-}
-
-.match:after {
-
-}
-.match:after {
-
+.twoMatchLine:after {
+  content: '';
+  border-right-style: solid;
+  border-bottom-style: solid;
+  height: 100%;
+  top: -50%;
 }
 
 .avatar {
@@ -123,6 +154,8 @@ export default {
   border: solid 1px #880505;
 }
 
-
+.match.firstRoundMatch:before {
+  display: none;
+}
 
 </style>

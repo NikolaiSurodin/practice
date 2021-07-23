@@ -47,7 +47,6 @@ import {mapActions, mapGetters} from 'vuex'
 import {Tournament} from "@/classes/Tournament/Tournament";
 import TournamentTable from "@/view/TournamentTable";
 import PopupError from "@/components/PopupError";
-
 export default {
   name: "TournamentPage",
   components: {PopupError, TournamentTable},
@@ -98,37 +97,12 @@ export default {
       return this.getTournament.winner?.name
     }
   }
-
 }
 </script>
 <style scoped>
-.form {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 30px;
-}
 
 .container {
   max-width: 250px;
 }
-
-.winner {
-  width: 250px;
-  height: 100px;
-  border: 1px solid grey;
-  border-radius: 15px;
-  position: center;
-}
-
-.winner-text {
-  text-align: center;
-  right: 0;
-  bottom: 0;
-  font-size: 20px;
-  top: 60px
-}
-
 
 </style>
