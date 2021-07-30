@@ -60,17 +60,17 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,700&display=swap');
 
 .roundNumber {
-  font-family: 'Noto Serif', serif;
-  justify-content: center;
-  height: 50px;
-  width: 150px;
-  margin-left: 20px;
-  text-align: center;
-  border: solid #000000;
-  border-radius: 10px;
+  background-color: #f6ff00;
+  border-color: #f6ff00;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  padding: 15px 60px;
+  font: 400 15px/1 'Roboto', sans-serif;
+  border-radius: 50px;
+  /*transparent значит прозрачный бордер*/
   margin-top: 15px;
+  cursor: pointer;
 }
-
 
 .round-list {
   display: flex;
@@ -86,7 +86,6 @@ export default {
   flex: 0 1 auto;
   justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
   position: relative;
 }
 </style>
